@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="scripts/generator.js"></script>
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <section>
+            <hgroup>
+                <h1>Block JSON generator</h1>
+            </hgroup>
+            <form>
+                <input type="radio" name="type" value="block" required>Block
+                <input type="radio" name="type" value="item" required>Item
+                <br>
+                <input type="text" name="modID" placeholder="Mod ID" id="modID" required><br>
+                <input type="text" name="unlocalizedName" placeholder="Unlocalized Name" id="unlocalizedName" required/> <br>
+                <input type="text" name="registryName" placeholder="Registry Name" id="registryName" required> <br>
+                <input type="button" name="generate" value="Generate" id="generate"/>
+            </form>
+            <div id="blockstate"></div>
+            <div id="blockmodel"></div>
+            <div id="itemmodel"></div>
+        </section>
+    </body>
+</html>
