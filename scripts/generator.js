@@ -1,19 +1,39 @@
 $(function(){
     $("#generate").click(function(e){
-        var validated = true;
         var modid = $("#modID").val()+":";
-        var unlocalizedName = $("#unlocalizedName");
-        var registryName = $("#registryName");
-        if(!unlocalizedName.val()){
-            unlocalizedName.css("border", "solid 1px Red");
-            validated = false;
+        var registryName = $("#registryName").val();
+        var objectType = $('input[name=type]:checked', '#generatorForm').val();
+
+        var itemType = "blocks"
+        var itemParent = "block/cube_all"
+        var textureType = "all"
+
+        if(objectType == "item"){
+            itemType = "items";
+            itemParent = "builtin/generated";
         }
-        if(validated)
+
+
+        var validate = function(){
+            if(objectType != undefined) return true;
+            if(registry)
+
+            return false;
+        }
+
+        if(validate())
         {
             var blockstateObject = new Object();
-            blockstateObject.unlocalizedName = modid + unlocalizedName;
-            blockstateObject.registryName = modid + registryName;
-            $("#blockstate").text(JSON.stringify(blockstateObject));
+            blockstateObject.variants = new Object();
+            blockstateObject.variants.normal = new Object();
+            blockstateObject.variants.normal.model = modid + registryName;
+            // blockstateObject.type = objectType.val();
+            $("#blockstate").html("<pre>" + JSON.stringify(blockstateObject, null, 2) + "</pre>");
+            var blockmodelObject = new Object();
+            blockmodelObject.parent = itemParent;
+            blockmodelObject.textures = new Object();
+            blockmodelObject.textures[textureType] = modid + itemType + "/" + registryName;
+            $("#model").html("<pre>" + JSON.stringify(blockmodelObject, null, 2) + "</pre>");
         }
     });
 });
